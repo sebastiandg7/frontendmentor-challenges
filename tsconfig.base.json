@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@sebastiandg7/feature-main": ["libs/feature-main/src/index.ts"],
+      "@sebastiandg7/challenges/stats-preview-card": [
+        "libs/challenges/stats-preview-card/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

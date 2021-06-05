@@ -1,8 +1,4 @@
 {
-  "npmScope": "sebastiandg7",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -10,18 +6,34 @@
     },
     ".eslintrc.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "sebastiandg7",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "ZWU3MmNlYjgtMzdjMS00MjE4LTgyODQtMmIwOTY3M2NlY2Q5fHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "frontendmentor-challenges": {
+      "tags": []
+    },
+    "frontendmentor-challenges-e2e": {
+      "tags": [],
+      "implicitDependencies": ["frontendmentor-challenges"]
+    },
+    "feature-main": {
+      "tags": ["type:feature"]
+    },
+    "challenges-stats-preview-card": {
+      "tags": ["type:feature"]
+    }
+  }
 }

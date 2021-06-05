@@ -1,10 +1,242 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "frontendmentor-challenges",
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "frontendmentor-challenges": {
+      "projectType": "application",
+      "root": "apps/frontendmentor-challenges",
+      "sourceRoot": "apps/frontendmentor-challenges/src",
+      "prefix": "sebastiandg7",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/frontendmentor-challenges",
+            "index": "apps/frontendmentor-challenges/src/index.html",
+            "main": "apps/frontendmentor-challenges/src/main.ts",
+            "polyfills": "apps/frontendmentor-challenges/src/polyfills.ts",
+            "tsConfig": "apps/frontendmentor-challenges/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/frontendmentor-challenges/src/favicon.ico",
+              "apps/frontendmentor-challenges/src/assets"
+            ],
+            "styles": [
+              "apps/frontendmentor-challenges/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/frontendmentor-challenges/src/environments/environment.ts",
+                  "with": "apps/frontendmentor-challenges/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "frontendmentor-challenges:build:production"
+            },
+            "development": {
+              "browserTarget": "frontendmentor-challenges:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "frontendmentor-challenges:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/frontendmentor-challenges/src/**/*.ts",
+              "apps/frontendmentor-challenges/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/frontendmentor-challenges"
+          ],
+          "options": {
+            "jestConfig": "apps/frontendmentor-challenges/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "frontendmentor-challenges-e2e": {
+      "root": "apps/frontendmentor-challenges-e2e",
+      "sourceRoot": "apps/frontendmentor-challenges-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/frontendmentor-challenges-e2e/cypress.json",
+            "tsConfig": "apps/frontendmentor-challenges-e2e/tsconfig.e2e.json",
+            "devServerTarget": "frontendmentor-challenges:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "frontendmentor-challenges:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/frontendmentor-challenges-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "feature-main": {
+      "projectType": "library",
+      "root": "libs/feature-main",
+      "sourceRoot": "libs/feature-main/src",
+      "prefix": "sebastiandg7",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/feature-main"
+          ],
+          "options": {
+            "project": "libs/feature-main/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/feature-main/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/feature-main/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/feature-main"
+          ],
+          "options": {
+            "jestConfig": "libs/feature-main/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/feature-main/src/**/*.ts",
+              "libs/feature-main/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "challenges-stats-preview-card": {
+      "projectType": "library",
+      "root": "libs/challenges/stats-preview-card",
+      "sourceRoot": "libs/challenges/stats-preview-card/src",
+      "prefix": "sebastiandg7",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/challenges/stats-preview-card"
+          ],
+          "options": {
+            "project": "libs/challenges/stats-preview-card/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/challenges/stats-preview-card/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/challenges/stats-preview-card/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/challenges/stats-preview-card"
+          ],
+          "options": {
+            "jestConfig": "libs/challenges/stats-preview-card/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/challenges/stats-preview-card/src/**/*.ts",
+              "libs/challenges/stats-preview-card/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
   }
 }
